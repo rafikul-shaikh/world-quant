@@ -5,70 +5,65 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen w-full bg-[#050505] text-white flex flex-col pt-60 pb-12 px-6 lg:px-16 overflow-hidden">
-      {/* 1. LAYER: DYNAMIC BACKGROUND MESH */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Subtle grid overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+    <section className="relative min-h-screen w-full bg-[#050505] text-white flex flex-col font-sans overflow-hidden">
+      {/* BACKGROUND LAYER */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] aspect-square rounded-full border border-white/5 animate-pulse" />
+      </div>
 
-        {/* Animated Particle Sphere Placeholder */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] aspect-square opacity-30">
-          <div className="w-full h-full rounded-full border border-white/10 animate-[pulse_8s_ease-in-out_infinite]" />
-          <div className="absolute inset-0 rounded-full border border-white/5 rotate-45 scale-90" />
+      {/* MIDDLE SECTION (Typography)*/}
+
+      <div className="relative z-10 flex-1 flex flex-col justify-center  px-8 lg:px-10   ">
+        <div className="w-full max-w-[1500px] mx-auto flex flex-col lg:flex-row justify-between items-start ">
+          {/* left heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-6xl font-bold uppercase tracking-tighter"
+          >
+            Forging Companies
+            <br /> That <br />
+          </motion.h1>
+
+          {/* right heading */}
+
+          <motion.h1
+            initial={{ opacity: 0, y: 90 }}
+            animate={{ opacity: 1, y: 90 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-6xl font-bold uppercase tracking-tighter text-right self-end"
+          >
+            Pull The <br /> Future Forward
+          </motion.h1>
         </div>
       </div>
 
-      {/* 2. LAYER: MAIN TYPOGRAPHY */}
-      <div className="relative z-10 flex flex-col lg:flex-row justify-between w-full max-w-[1400px] mx-auto flex-1">
-        {/* Left Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-2xl"
-        >
-          <h1 className=" text-6xl font-bold  uppercase">
-            Forging Companies <br /> That <br />
-          </h1>
-        </motion.div>
+      {/* (Footer/Contact)*/}
 
-        {/* Right Heading (Offset Down) */}
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:mt-[6rem] text-right"
-        >
-          <h1 className=" text-6xl font-bold  uppercase">
-            Pull The <br />
-            Future Forward <br />
-          </h1>
-        </motion.div>
-      </div>
+      <div className="relative mx-auto w-full px-8 lg:px-10  pb-12 ">
+        <div className="w-full border-t border-white/40 "></div>
+        <div className="mt-8 w-full flex flex-col md:flex-row items-center justify-between gap-10">
+          <div className="relative  cursor-pointer px-6 py-4  transition-colors hover:bg-white/5">
+            <span className="text-[10px] font-normal  uppercase whitespace-nowrap shrink-0">
+              Contact Us
+            </span>
 
-      {/* 3. LAYER: FOOTER INFO */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto flex flex-col md:flex-row items-end justify-between gap-12 pt-20">
-        {/* Contact Us Button */}
-        <div className="relative group cursor-pointer overflow-hidden border border-white/10 px-8 py-5 transition-all hover:bg-white/5">
-          <span className="relative z-10 font-mono text-[10px] tracking-[0.4em] uppercase">
-            Contact Us
-          </span>
-          {/* Corner Accents */}
-          <div className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-white/60" />
-          <div className="absolute top-0 right-0 w-1.5 h-1.5 border-t border-r border-white/60" />
-          <div className="absolute bottom-0 left-0 w-1.5 h-1.5 border-b border-l border-white/60" />
-          <div className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-white/60" />
-        </div>
+            <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/40" />
+            <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/40" />
+            <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white/40" />
+            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/40" />
+          </div>
 
-        {/* Manifesto and Logo */}
-        <div className="flex flex-col md:flex-row items-end gap-10 max-w-4xl">
-          <p className="font-mono text-[10px] leading-relaxed tracking-wider text-white/40 uppercase text-right md:max-w-md">
-            WorldQuant Foundry is a venture lab that empowers breakthrough
-            founders to pull the future forward. Capital. Connections.
-            Mentorship. Full-stack support. We deliver more than resources—we
-            create the infrastructure for scale.
-          </p>
-          <div className="shrink-0 pb-1">
+          <div className="max-w-xl justify-end">
+            <p className="text-[12px] font-mono text-white/40 uppercase text-right leading-[1.8] tracking-[0.2em] ">
+              WorldQuant Foundry is a venture lab that empowers breakthrough
+              founders to pull the future forward. Capital. Connections.
+              Mentorship. Full-stack support. We deliver more than resources—we
+              create the infrastructure for scale.
+            </p>
+          </div>
+          <div className="shrink-0  ">
             <LogoIcon />
           </div>
         </div>
@@ -77,7 +72,6 @@ export default function Hero() {
   );
 }
 
-//   brand Icon
 function LogoIcon() {
   return (
     <svg
