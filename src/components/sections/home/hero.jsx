@@ -22,7 +22,7 @@ export default function Hero() {
         </motion.h1>
       </div>
 
-      {/* BOTTOM FOOTER (ABSOLUTE 🔥) */}
+      {/* BOTTOM FOOTER */}
       <div className="absolute bottom-0 left-0 w-full px-8 lg:px-10 pb-12 z-10">
         <div className="w-full border-t border-white/40"></div>
 
