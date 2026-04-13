@@ -50,10 +50,10 @@ export default function OurEthos() {
   const [activeCard, setActiveCard] = useState(null);
 
   return (
-    <section className="  relative w-full mx-auto bg-[#dadada] py-20 px-6 md:px-12 text-black overflow-hidden rounded-2xl  ">
+    <section className="  relative w-full mx-auto bg-[#dadada] py-40 px-6 md:px-12 text-black overflow-hidden rounded-2xl  ">
       <div className="max-w-[1400px] mx-auto">
         {/* HEADER BLOCK */}
-        <div className="pt-30 grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 items-start">
+        <div className=" grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 items-start">
           <div className=" flex flex-col gap-4">
             <h2 className=" font-mono text-[12px] uppercase  text-black">
               Our ethos
