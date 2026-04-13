@@ -5,67 +5,41 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen w-full bg-[#050505] text-white flex flex-col font-sans overflow-hidden">
-      {/* BACKGROUND LAYER */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] aspect-square rounded-full border border-white/5 animate-pulse" />
+    <section className="relative min-h-screen w-full bg-[#050505] text-white overflow-visible">
+      {/* BACKGROUND */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1500px] rounded-full border border-white/5" />
       </div>
 
-      {/* MIDDLE SECTION (Typography)*/}
+      {/* CENTER CONTENT */}
+      <div className="relative z-10 flex items-center justify-between min-h-screen px-8 lg:px-10 max-w-[1500px] mx-auto">
+        <motion.h1 className="text-6xl font-bold uppercase">
+          Forging Companies <br /> That
+        </motion.h1>
 
-      <div className="relative z-10 flex-1 flex flex-col justify-center  px-8 lg:px-10   ">
-        <div className="w-full max-w-[1500px] mx-auto flex flex-col lg:flex-row justify-between items-start ">
-          {/* left heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-6xl font-bold uppercase tracking-tighter"
-          >
-            Forging Companies
-            <br /> That <br />
-          </motion.h1>
-
-          {/* right heading */}
-
-          <motion.h1
-            initial={{ opacity: 0, y: 90 }}
-            animate={{ opacity: 1, y: 90 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-6xl font-bold uppercase tracking-tighter text-right self-end"
-          >
-            Pull The <br /> Future Forward
-          </motion.h1>
-        </div>
+        <motion.h1 className="text-6xl font-bold uppercase text-right">
+          Pull The <br /> Future Forward
+        </motion.h1>
       </div>
 
-      {/* (Footer/Contact)*/}
+      {/* BOTTOM FOOTER (ABSOLUTE 🔥) */}
+      <div className="absolute bottom-0 left-0 w-full px-8 lg:px-10 pb-12 z-10">
+        <div className="w-full border-t border-white/40"></div>
 
-      <div className="relative mx-auto w-full px-8 lg:px-10  pb-12 ">
-        <div className="w-full border-t border-white/40 "></div>
-        <div className="mt-8 w-full flex flex-col md:flex-row items-center justify-between gap-10">
-          <div className="relative  cursor-pointer px-6 py-4  transition-colors hover:bg-white/5">
-            <span className="text-[10px] font-normal  uppercase whitespace-nowrap shrink-0">
-              Contact Us
-            </span>
-
-            <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/40" />
-            <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/40" />
-            <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white/40" />
-            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/40" />
+        <div className="mt-8 flex justify-between items-center">
+          {/* CONTACT */}
+          <div className="relative px-6 py-4">
+            <span className="text-[10px] uppercase">Contact Us</span>
           </div>
 
-          <div className="max-w-xl justify-end">
-            <p className="text-[12px] font-mono text-white/40 uppercase text-right leading-[1.8] tracking-[0.2em] ">
-              WorldQuant Foundry is a venture lab that empowers breakthrough
-              founders to pull the future forward. Capital. Connections.
-              Mentorship. Full-stack support. We deliver more than resources—we
-              create the infrastructure for scale.
-            </p>
-          </div>
-          <div className="shrink-0  ">
-            <LogoIcon />
-          </div>
+          {/* TEXT */}
+          <p className="max-w-xl text-[12px] text-white/40 uppercase text-right leading-[1.8] tracking-[0.2em]">
+            WorldQuant Foundry is a venture lab that empowers breakthrough
+            founders to pull the future forward...
+          </p>
+
+          {/* LOGO */}
+          <LogoIcon />
         </div>
       </div>
     </section>
