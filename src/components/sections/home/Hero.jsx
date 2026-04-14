@@ -2,6 +2,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { Azeret_Mono } from "next/font/google";
+
+const azeret = Azeret_Mono({ subsets: ["latin"] });
 
 export default function Hero() {
   return (
@@ -13,11 +16,11 @@ export default function Hero() {
 
       {/* CENTER CONTENT */}
       <div className="relative z-10 flex items-center justify-between min-h-screen px-8 lg:px-10 max-w-[1500px] mx-auto">
-        <motion.h1 className="text-6xl font-bold uppercase">
+        <motion.h1 className="text-6xl font-normal uppercase">
           Forging Companies <br /> That
         </motion.h1>
 
-        <motion.h1 className="text-6xl font-bold uppercase text-right">
+        <motion.h1 className="text-6xl font-normal uppercase text-right">
           Pull The <br /> Future Forward
         </motion.h1>
       </div>
@@ -29,7 +32,9 @@ export default function Hero() {
         <div className="mt-8 flex justify-between items-center">
           {/* CONTACT */}
           <div className="relative px-8 py-2">
-            <span className="text-[12px] uppercase">Contact Us</span>
+            <span className={`${azeret.className} text-[12px] uppercase`}>
+              Contact Us
+            </span>
 
             <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white" />
             <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white" />
@@ -40,7 +45,9 @@ export default function Hero() {
           {/* Corner Accents */}
 
           {/* TEXT */}
-          <p className="max-w-xl text-[10px] text-white/40 uppercase text-right leading-[1.8] tracking-[0.2em]">
+          <p
+            className={`${azeret.className} max-w-xl text-[10px] text-white/40  uppercase text-right leading-[1.8] tracking-[0.2em]`}
+          >
             WorldQuant Foundry is a venture lab that empowers breakthrough
             founders to pull the future forward. Capital. Connections.
             Mentorship. Full-stack support. We deliver more than resources—we
