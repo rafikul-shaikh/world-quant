@@ -91,7 +91,7 @@ export default function Portfolio() {
               </div>
             </div>
 
-            {/* CORNER SVGs */}
+            {/* CORNER  */}
 
             <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-black" />
             <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-black" />

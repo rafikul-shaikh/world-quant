@@ -2,9 +2,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Azeret_Mono } from "next/font/google";
-
-const azeret = Azeret_Mono({ subsets: ["latin"] });
 
 export default function Hero() {
   return (
@@ -32,22 +29,19 @@ export default function Hero() {
         <div className="mt-8 flex justify-between items-center">
           {/* CONTACT */}
           <div className="relative px-8 py-2">
-            <span className={`${azeret.className} text-[12px] uppercase`}>
+            <span className=" font-azeret text-[12px] uppercase">
               Contact Us
             </span>
+            {/* Corner Accents */}
 
-            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white" />
             <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white" />
             <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white" />
             <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white" />
             <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white" />
           </div>
-          {/* Corner Accents */}
 
           {/* TEXT */}
-          <p
-            className={`${azeret.className} max-w-xl text-[10px] text-white/40  uppercase text-right leading-[1.8] tracking-[0.2em]`}
-          >
+          <p className="max-w-xl text-[10px] text-white/40 font-azeret uppercase text-right leading-[1.8] tracking-[0.2em]">
             WorldQuant Foundry is a venture lab that empowers breakthrough
             founders to pull the future forward. Capital. Connections.
             Mentorship. Full-stack support. We deliver more than resources—we
