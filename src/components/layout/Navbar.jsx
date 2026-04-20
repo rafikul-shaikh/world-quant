@@ -1,9 +1,12 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function Navbar() {
+  const [hovered, setHovered] = useState(null);
   const [show, setShow] = useState(true);
+  const lastScroll = useRef(0);
+  const isHeroVisible = useRef(true);
   const [shrink, setShrink] = useState(false);
 
   const navLinks = [
@@ -15,49 +18,72 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
-    let lastScroll = 0;
+    const hero = document.getElementById("hero");
 
+    //  HERO VISIBILITY TRACK
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isHeroVisible.current = entry.isIntersecting;
+
+        if (entry.isIntersecting) {
+          // HERO visible → show navbar
+          setShow(true);
+        } else {
+          // HERO gone → hide navbar immediately
+          setShow(false);
+        }
+      },
+      { threshold: 0 },
+    );
+    if (hero) observer.observe(hero);
+
+    //  SCROLL DIRECTION TRACK
     const handleScroll = () => {
       const currentScroll = window.scrollY;
-
-      // 🔹 shrink effect
       if (currentScroll > 50) {
         setShrink(true);
       } else {
         setShrink(false);
       }
 
-      // 🔹 hide / show navbar
-      if (currentScroll > lastScroll && currentScroll > 100) {
-        setShow(false); // scroll down
-      } else {
-        setShow(true); // scroll up
+      //  Only control scroll behavior AFTER hero is gone
+      if (!isHeroVisible.current) {
+        if (currentScroll < lastScroll.current) {
+          setShow(true); // scroll up → show
+        } else {
+          setShow(false); // scroll down → hide
+        }
       }
 
-      lastScroll = currentScroll;
+      lastScroll.current = currentScroll;
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      if (hero) observer.unobserve(hero);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <header
-      className={`mt-3 fixed top-0 left-0 z-50 transition-all duration-700 ease-in-out
+      className={`fixed top-0 z-50 bg-black transition-all duration-700 ease-in-out px-4
+    ${show ? "translate-y-4" : "-translate-y-full"} 
     ${
       shrink
-        ? "w-[40%] left-1/2 -translate-x-1/2 top-1 rounded-[8px] bg-zinc-900/80 backdrop-blur-md shadow-lg py-2"
-        : "w-full bg-blue-500 py-2"
+        ? "w-[90%] md:w-[40%] left-1/2 -translate-x-1/2 rounded-[8px] bg-black/80 backdrop-blur-md shadow-2xl py-2"
+        : "w-full left-0 translate-x-0  py-2"
     }
   `}
     >
-      <div className=" px-4 lg:px-8">
+      <div className=" px-2 lg:px-4">
         <div className="flex items-center justify-between h-8">
           {/* Logo */}
 
           <Link
             href="/"
-            className="text-white transition-all duration-300 flex items-center"
+            className="text-white/80 transition-all duration-300 flex items-center"
           >
             {shrink ? (
               // SVG LOGO (when navbar is centered/shrunk)
@@ -89,44 +115,60 @@ export default function Navbar() {
           </Link>
 
           <nav className="">
-            <ul className="flex flex-row gap-8">
-              {navLinks.map((link) => (
+            <ul className="flex flex-row gap-1">
+              {navLinks.map((link, index) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="group/button text-[12px] font-azeret relative isolate flex items-center
-                     gap-[8px] uppercase whitespace-nowrap"
-                  >
-                    {/* Square Dot {bg-[#0a0a0a] } */}
-                    <div className=" bg-white -mt-[2.5px] size-[9px] rounded-[2px] -translate-x-full opacity-0 blur-[32px] transition-all duration-500 group-hover/button:translate-x-0 group-hover/button:opacity-100 group-hover/button:blur-[0px]"></div>
-                    <div
-                      className="relative isolate flex -translate-x-[13px] overflow-hidden transition-transform duration-500 
-                        group-hover/button:translate-x-0"
-                    >
-                      <span className="transition-transform duration-500 group-hover/button:-translate-y-full">
-                        {link.name}
-                      </span>
-                      <span
-                        className="absolute inset-0 translate-y-full transition-transform duration-500 group-hover/button:translate-y-0"
-                        aria-hidden="true"
-                      >
-                        {link.name}
-                        {/* CORNER  */}
+                    onMouseEnter={() => {
+                      setHovered(index);
 
-                        <div
-                          className={`absolute top-0 left-0 w-2 h-2 border-t border-l bg-white`}
-                        />
-                        <div
-                          className={`absolute top-0 right-0 w-2 h-2 border-t border-r bg-white`}
-                        />
-                        <div
-                          className={`absolute bottom-0 left-0 w-2 h-2 border-b border-l bg-white`}
-                        />
-                        <div
-                          className={`absolute bottom-0 right-0 w-2 h-2 border-b border-r bg-white`}
-                        />
-                      </span>
+                      setTimeout(() => {
+                        setHovered(null);
+                      }, 400);
+                    }}
+                    className="group/button text-[12px] text-white/80 font-azeret relative isolate flex items-center
+                     gap-[2px] uppercase whitespace-nowrap px-4 py-3 overflow-hidden "
+                  >
+                    {/* animate-[blink_0.6s_ease-in-out_0.05s_1]
+                    animate-[blink_0.1s_linear_2] */}
+
+                    <div
+                      className={`flex items-center gap-[8px] ${
+                        hovered === index ? "animate-[blink_0.2s_linear_2]" : ""
+                      }`}
+                      style={{
+                        filter: hovered === index ? "brightness(2)" : "none",
+                      }}
+                    >
+                      {/* Square Dot {bg-[#0a0a0a] } */}
+                      <div className=" bg-white -mt-[2.5px] size-[9px] rounded-[2px] -translate-x-full opacity-0 blur-[32px] transition-all duration-500 group-hover/button:translate-x-0 group-hover/button:opacity-100 group-hover/button:blur-[0px]"></div>
+
+                      {/* text animation  */}
+                      <div
+                        className="relative isolate flex -translate-x-[13px] overflow-hidden transition-transform duration-500
+                        group-hover/button:translate-x-0"
+                      >
+                        <span className="transition-transform duration-500 group-hover/button:-translate-y-full">
+                          {link.name}
+                        </span>
+                        <span
+                          className="absolute inset-0 translate-y-full transition-transform duration-500 group-hover/button:translate-y-0"
+                          aria-hidden="true"
+                        >
+                          {link.name}
+                        </span>
+                      </div>
                     </div>
+                    {/* Corner Accents */}
+
+                    <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white opacity-0 transition-all duration-300 group-hover/button:opacity-100"></div>
+
+                    <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white opacity-0 transition-all duration-300 group-hover/button:opacity-100"></div>
+
+                    <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white opacity-0 transition-all duration-300 group-hover/button:opacity-100"></div>
+
+                    <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white opacity-0 transition-all duration-300 group-hover/button:opacity-100"></div>
                   </Link>
                 </li>
               ))}

@@ -5,7 +5,10 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen w-full bg-[#050505] text-white overflow-visible">
+    <section
+      id="hero"
+      className="relative min-h-screen w-full bg-[#050505] text-white overflow-visible"
+    >
       {/* BACKGROUND */}
       <div className="absolute inset-0 z-0 opacity-40">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1500px] rounded-full border border-white/5" />

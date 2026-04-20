@@ -32,3 +32,48 @@
 body {
   font-family: var(--font-roc) !important;
 }
+
+/* @keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+} */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  /* 75% {
+    opacity: 0;
+  } */
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink-hover {
+  animation: blink 0.6s steps(2, start);
+}
