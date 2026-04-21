@@ -77,3 +77,98 @@ body {
 .blink-hover {
   animation: blink 0.6s steps(2, start);
 }
+
+/* @keyframes glitch {
+  0%,
+  100% {
+    opacity: 1;
+    filter: none;
+  }
+
+  20% {
+    opacity: 0.4;
+    filter: brightness(1.8);
+  }
+
+  40% {
+    opacity: 0.7;
+    filter: contrast(2);
+  }
+
+  60% {
+    opacity: 0.3;
+    filter: brightness(2.2);
+  }
+
+  80% {
+    opacity: 0.6;
+    filter: invert(1);
+  }
+} */
+
+/* @keyframes glitch {
+  0%,
+  100% {
+    opacity: 1;
+    filter: none;
+  }
+
+  45% {
+    opacity: 0.2;
+    filter: brightness(2);
+  }
+
+  55% {
+    opacity: 1;
+    filter: none;
+  }
+} */
+
+@keyframes glitch {
+  0% {
+    opacity: 1;
+    filter: none;
+  }
+
+  /* FAST INTENSE FLICKER AT START */
+  5% {
+    opacity: 0.1;
+    filter: brightness(2);
+  }
+  10% {
+    opacity: 1;
+    filter: none;
+  }
+
+  15% {
+    opacity: 0.2;
+    filter: brightness(2);
+  }
+  20% {
+    opacity: 1;
+    filter: none;
+  }
+
+  25% {
+    opacity: 0.3;
+    filter: contrast(2);
+  }
+  30% {
+    opacity: 1;
+    filter: none;
+  }
+
+  /* THEN STABLE */
+  100% {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+.glitch-wrapper {
+  display: inline-block;
+}
+
+.glitch-wrapper:hover {
+  animation: glitch 0.1s linear 2;
+}
