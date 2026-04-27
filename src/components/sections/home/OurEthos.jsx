@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Button from "../ui/Button";
 
 const cardData = [
   {
@@ -50,12 +51,12 @@ export default function OurEthos() {
   const [activeCard, setActiveCard] = useState(null);
 
   return (
-    <section className="  relative w-full mx-auto bg-[#dadada] py-40 px-6 md:px-12 text-black overflow-hidden rounded-t-[2xl]  ">
-      <div className="max-w-[1400px] mx-auto">
+    <section className="relative w-full mx-auto bg-[#dadada]  pt-[220px] pb-[200px] md:py[220px] px-6 md:px-10 text-black overflow-hidden rounded-t-[20px]">
+      <div className="max-w-[1400px] ">
         {/* HEADER BLOCK */}
         <div className=" grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 items-start">
-          <div className=" flex flex-col gap-4">
-            <h2 className=" font-mono text-[12px] uppercase  text-black">
+          <div className=" flex flex-col gap-3">
+            <h2 className=" font-azeret text-[12px] uppercase  text-black">
               Our ethos
             </h2>
             <p className=" text-4xl md:text-3xl font-medium uppercase tracking-tighter leading-none">
@@ -65,7 +66,7 @@ export default function OurEthos() {
             </p>
           </div>
           <div className="flex flex-col items-start pt-6 border-t border-black/80">
-            <p className=" md:text-sm font-normal text-black/80 uppercase  mb-8 max-w-3xl">
+            <p className=" md:text-sm  text-black/80 uppercase  mb-8 max-w-3xl">
               Our comprehensive founder platform shifts the odds. With
               infrastructure that works. With experts who've been there. With
               the right pressure—pushing you forward, not under. This isn't an
@@ -73,41 +74,41 @@ export default function OurEthos() {
             </p>
 
             {/* CORNER BUTTON */}
-            <button className="group relative px-6 py-3 overflow-hidden">
-              <div className="absolute inset-0 border border-white/20 transition-colors group-hover:bg-white group-hover:text-black" />
-              <div className="relative flex items-center gap-2">
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em]">
-                  Join Us
-                </span>
-              </div>
-              {/* Corner Accents */}
-              <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-black" />
-              <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-black" />
-              <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-black" />
-              <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-black" />
-              <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-black" />
-            </button>
+
+            <Button
+              padding="px-7 py-3"
+              textColor="text-black/80"
+              bgColor="bg-black"
+              borderColor="border-black"
+            >
+              Join Us
+            </Button>
           </div>
         </div>
 
         {/* EXPANDABLE CARDS LIST */}
-        <ul className="flex flex-col md:flex-row gap-5 md:gap-0 h-auto md:h-[600px]">
+        {/* <ul className="flex flex-col md:flex-row gap-5 md:gap-0 h-auto md:h-[600px]"> */}
+        <ul className="flex flex-col md:flex-row h-auto md:h-[600px] relative">
           {cardData.map((card) => (
             <motion.li
               key={card.id}
               onMouseEnter={() => setActiveCard(card.id)}
               onMouseLeave={() => setActiveCard(null)}
+              style={{ width: "100%", zIndex: 10 + card.id }}
               animate={{
                 width:
                   activeCard === null
-                    ? "25%"
+                    ? "35%"
                     : activeCard === card.id
                       ? "40%"
                       : "20%",
               }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className={`relative h-[500px] md:h-full shrink-0 overflow-hidden rounded-[24px] ${card.bg} ${card.textColor} transition-colors duration-500`}
-              style={{ width: "100%" }} // Fallback for mobile
+              // className={`relative h-[500px] md:h-full shrink-0 overflow-hidden rounded-[24px] ${card.bg} ${card.textColor} transition-colors duration-500`}
+              // style={{ width: "100%" }} // Fallback for mobile
+              className={`relative h-[500px] md:h-full shrink-0 overflow-hidden rounded-[24px] ${card.bg} ${card.textColor} transition-all duration-500
+              md:-ml-[120px] first:ml-0 hover:z-50`}
+              style={{ width: "100%", zIndex: 10 + card.id }}
             >
               <div className="flex flex-col items-center justify-between p-10 h-full text-center">
                 <h3 className="text-2xl font-medium uppercase tracking-tighter max-w-[200px]">

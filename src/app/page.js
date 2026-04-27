@@ -1,4 +1,5 @@
 import HomePage from "./home/page";
+import WhyWQF from "./why-wqf/page";
 
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
    
     <main className="bg-black min-h-screen">
      <HomePage/>
+     <WhyWQF/>
     </main>
   );
 }
