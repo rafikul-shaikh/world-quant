@@ -28,19 +28,17 @@ export default function Partners() {
         <div className="px-10">
           <div className="">
             <h2 className=" text-[14px] font-normal mb-4 uppercase text-white/80">
-              for Investors
+              partners
             </h2>
-            <p className="uppercase font-normal text-[40px] max-w-[500px] text-white leading-10">
-              Invest in
+            <p className="uppercase font-normal text-[30px] max-w-[500px] text-white leading-10">
+              Partner at the edge of
               <br />
-              tomorrow’s
-              <br />
-              category creators.
+              what’s possible
             </p>
             <div className=" mt-4 mb-8 w-full max-w-[450px] h-[1px] bg-white/20 " />
             <p className="max-w-[450px] text-[12px] font-azeret text-white/50 uppercase">
-              Join our investor circle and gain pre-market access to ventures
-              creating new markets in AI, Biotech, blockchain and frontier tech.
+              Join forces with the ventures that are creating new markets.
+              Partner early, transform fast, own the edge.
             </p>
           </div>
 
@@ -59,11 +57,11 @@ export default function Partners() {
                       group-hover:translate-x-[5px]"
                 >
                   <span className=" text-[12px] uppercase transition-transform duration-400 ease-in-out group-hover:-translate-y-full">
-                    connect with us
+                    partner with us
                   </span>
 
                   <span className="absolute inset-0 text-[12px] uppercase translate-y-full transition-transform duration-400 ease-in-out group-hover:translate-y-0">
-                    connect with us
+                    partner with us
                   </span>
                 </div>
               </div>

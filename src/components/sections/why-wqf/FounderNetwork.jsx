@@ -4,49 +4,6 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../ui/Button";
 
-// const cardData = [
-//   {
-//     id: 1,
-//     number: "01 / 04",
-//     title: "Exponential Foresight",
-//     description:
-//       "We spot industry trends before they permeate the industry. Transform them into companies that matter. Some call it foresight. We call it pattern recognition at scale.",
-//     bg: "bg-[#111111]",
-//     textColor: "text-white",
-//     img: "https://worldquant-foundry.files.svdcdn.com/production/images/exponential-foresight-icon.svg",
-//   },
-//   {
-//     id: 2,
-//     number: "02 / 04",
-//     title: "Full-stack support",
-//     description:
-//       "Brand, marketing, performance, legal, ops, finance, funding, and development. Tech founders need tailored support—and a dedicated team from day one.",
-//     bg: "bg-[#00f2ea]", // Electric Teal
-//     textColor: "text-black",
-//     img: "https://worldquant-foundry.files.svdcdn.com/production/images/full-stack-support-icon.svg",
-//   },
-//   {
-//     id: 3,
-//     number: "03 / 04",
-//     title: "Financial stability",
-//     description:
-//       "Breakthrough thinking shouldn't compete with rent. That’s why we pay salaries from the start. You focus on building. We handle everything else.",
-//     bg: "bg-[#ff4d4d]", // Infrared Red
-//     textColor: "text-white",
-//     img: "https://worldquant-foundry.files.svdcdn.com/production/images/financial-support-icon.svg",
-//   },
-//   {
-//     id: 4,
-//     number: "04 / 04",
-//     title: "Intelligent iteration",
-//     description:
-//       "Know what you want to build? Start today. No drawn-out program or slow-moving curriculum. Just ruthless focus on product-market fit and market entry.",
-//     bg: "bg-[#f5f5f5]", // Off-white
-//     textColor: "text-black",
-//     img: "https://worldquant-foundry.files.svdcdn.com/production/images/intelligent-iteration-icon.svg",
-//   },
-// ];
-
 const cardData = [
   {
     id: 1,

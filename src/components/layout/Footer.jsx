@@ -175,6 +175,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0a0a0a] relative grid lg:grid-cols-2">
       {/* Decorative Canvas Element */}
+
       <canvas className="hidden size-full lg:block" ref={canvasRef}></canvas>
 
       <div
