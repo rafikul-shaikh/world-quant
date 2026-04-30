@@ -12,7 +12,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "WHY WQF", href: "/why-wqf" },
     { name: "PORTFOLIO", href: "/portfolio" },
-    { name: "TEAM", href: "/about" },
+    { name: "TEAM", href: "/team" },
     { name: "INSIGHTS", href: "/insights" },
     { name: "Contact", href: "#contact" },
   ];
