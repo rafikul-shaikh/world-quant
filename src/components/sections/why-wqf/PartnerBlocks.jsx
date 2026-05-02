@@ -5,14 +5,13 @@ import { useEffect, useRef } from "react";
 export default function PartnerBlocks() {
   const canvasRef = useRef(null);
 
-  // Optional: placeholder for Three.js later
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
 
-    // simple placeholder animation (you can replace with Three.js)
+    // simple placeholder animation
     let animationFrame;
     let t = 0;
 
