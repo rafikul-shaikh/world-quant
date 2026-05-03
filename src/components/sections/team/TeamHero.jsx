@@ -5,14 +5,13 @@ import { useEffect, useRef } from "react";
 export default function TeamHero() {
   const canvasRef = useRef(null);
 
-  // (Optional) placeholder for animation / Three.js
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
 
-    // simple demo animation (replace with Three.js later)
+    // simple demo animation
     let animationFrame;
     let t = 0;
 
