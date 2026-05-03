@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Leadership() {
+export default function TeamLeadership() {
   const bottomBorderRef = useRef(null);
   const rightBorderRef = useRef(null);
 
