@@ -6,9 +6,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-black text-white font-roc"> 
         <Navbar /> 
-       
           {children}
-       
       </body>
     </html>
   );

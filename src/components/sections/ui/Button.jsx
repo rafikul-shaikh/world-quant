@@ -27,7 +27,7 @@ export default function Button({
 
           {/* TEXT */}
           <div
-            className={`${textColor} font-azeret relative isolate flex -translate-x-[5px] overflow-hidden transition-transform duration-400 
+            className={`${textColor} font-azeret relative isolate flex -translate-x-[5px] overflow-hidden transition-transform duration-400
           ease-in-out group-hover:translate-x-[5px]`}
           >
             <span className=" text-[12px] uppercase transition-transform duration-400 ease-in-out group-hover:-translate-y-full">
@@ -35,7 +35,7 @@ export default function Button({
             </span>
 
             <span
-              className="absolute inset-0 text-[12px] uppercase translate-y-full transition-transform duration-400 
+              className="absolute inset-0 text-[12px] uppercase translate-y-full transition-transform duration-400
           ease-in-out group-hover:translate-y-0"
             >
               {children}
