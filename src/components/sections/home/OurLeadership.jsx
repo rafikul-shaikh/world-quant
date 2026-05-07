@@ -8,20 +8,22 @@ export default function OurLeadership() {
     {
       name: "Igor Tulchinsky",
       role: "Founder",
-      image: "image/WQF__0000_Founder.webp",
+      image: "/image/home/leadership/WQF__0000_Founder-IgorTulchinsky.webp",
       position: "50% 33%",
     },
     {
       name: "Amir Husain",
       role: "Chairman",
-      image: "image/WQF__0004_Chairman-and-Co-Founder_Amir-Husain-2.webp",
+      image:
+        "/image/home/leadership/WQF__0004_Chairman-and-Co-Founder_Amir-Husain-2.webp",
       position: "50% 27%",
     },
 
     {
       name: "Steven Lau",
       role: "CEO",
-      image: "image/WQF__0005_CEO-and-Co-Founder_Steven-Lau.webp",
+      image:
+        "/image/home/leadership/WQF__0005_CEO-and-Co-Founder_Steven-Lau.webp",
 
       position: "50% 30%",
     },

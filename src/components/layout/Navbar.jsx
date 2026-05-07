@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
-import Contact from "./Contact";
+import ContactDrawer from "./ContactDrawer";
 import NavItem from "../sections/ui/NavItem";
 
 export default function Navbar() {
@@ -156,7 +156,7 @@ export default function Navbar() {
           </div>
         </div>
       </header>
-      <Contact open={contactOpen} setOpen={setContactOpen} />
+      <ContactDrawer open={contactOpen} setOpen={setContactOpen} />
     </>
   );
 }
