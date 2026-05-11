@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import Button from "../sections/common/Button";
+import Button from "../common/Button";
 import { useEffect, useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";

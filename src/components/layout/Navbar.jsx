@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import ContactDrawer from "./ContactDrawer";
-import NavItem from "../sections/common/NavItem";
+import NavItem from "../common/NavItem";
 import { useNav } from "@/context/NavContext";
 
 export default function Navbar() {
@@ -60,7 +60,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 z-50 bg-black transition-all duration-700 ease-in-out px-4
+        className={`fixed top-0 z-[200] bg-black transition-all duration-700 ease-in-out px-4
            ${show ? "translate-y-4" : "-translate-y-full"}
            ${
              shrink
@@ -93,7 +93,7 @@ export default function Navbar() {
                 </svg>
               ) : (
                 <div className="leading-tight text-[10px] tracking-widest font-bold">
-                  WORLDQUANT <br />{" "}
+                  WORLDQUANT <br />
                   <span className="font-normal text-gray-400">FOUNDRY</span>
                 </div>
               )}
@@ -128,42 +128,40 @@ export default function Navbar() {
 
             {/* Mobile Indicator (Shown below 1018px) */}
             <button
-              onClick={() => setIsMenuOpen(true)}
-              className="min-[1018px]:hidden flex items-center justify-center w-8 h-8 border border-white/20 rounded-sm relative"
+              // onClick={() => setIsMenuOpen(true)}
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              className="min-[1018px]:hidden flex items-center justify-center w-8 h-8   rounded-sm relative"
             >
-              <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-              {/* Decorative Brackets */}
-              <span className="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-white/40"></span>
-              <span className="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-white/40"></span>
+              <div className="w-2 h-2 bg-white rounded-[2px]"></div>
+              {/* Corner Ascents */}
+
+              <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white" />
+              <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white" />
+              <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white" />
+              <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white" />
             </button>
           </div>
         </div>
       </header>
 
       {/* Fullscreen Mobile Menu Overlay */}
-      {/* Notice: No {isMenuOpen && ...} wrapper anymore */}
       <div
-        className={`fixed inset-0 z-[100] h-[50vh] bg-black/60 backdrop-blur-md flex flex-col p-8 transition-all duration-500 
-  ${isMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
+        className={`fixed inset-0 z-[100] mt-10 h-[40vh] bg-black/60 backdrop-blur-md flex flex-col p-8 transition-all duration-500 
+        ${isMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
       >
-        {/* Close Button */}
-        <button
-          onClick={() => setIsMenuOpen(false)}
-          className="absolute top-10 right-10 text-white text-xs tracking-widest flex items-center gap-2"
-        >
-          CLOSE <div className="w-6 h-[1px] bg-white"></div>
-        </button>
-
         <div className="grid grid-cols-2 gap-y-20 gap-x-10 my-auto text-center relative">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/30 text-2xl font-light">
-            +
-          </div>
-
           {navLinks.map((link) => (
             <div
               key={link.name}
-              className="flex flex-col items-center justify-center"
+              // className=" flex flex-col items-center justify-center"
+              className="relative  font-azeret text-[20px] flex items-center justify-center px-6 py-4 group"
             >
+              {/* Corners */}
+              <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/90" />
+              <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/90" />
+              <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white/90" />
+              <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/90" />
+
               {link.name === "Contact" ? (
                 <button
                   onClick={() => {

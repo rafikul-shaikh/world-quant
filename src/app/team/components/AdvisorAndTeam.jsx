@@ -1,6 +1,6 @@
 "use client";
 
-import TeamCard from "@/components/sections/common/TeamCard";
+import TeamCard from "@/components/common/TeamCard";
 
 export default function AdvisorsAndTeam() {
   const advisors = [
