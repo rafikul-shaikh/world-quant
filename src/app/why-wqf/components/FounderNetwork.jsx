@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Button from "../ui/Button";
+import Button from "@/components/sections/common/Button";
 
 const cardData = [
   {
@@ -56,7 +56,6 @@ export default function FounderNetwork() {
             </p>
 
             {/* CORNER BUTTON */}
-
             <Button
               padding="px-7 py-3"
               textColor="text-white/80"

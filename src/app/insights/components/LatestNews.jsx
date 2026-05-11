@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "../ui/Button";
+import Button from "../../../components/sections/common/Button";
 
 export default function LatestNews() {
   const news = [

@@ -1,4 +1,6 @@
-import Button from "../ui/Button";
+// import Button from "../ui/Button";
+
+import Button from "@/components/sections/common/Button";
 
 export default function Hero() {
   return (

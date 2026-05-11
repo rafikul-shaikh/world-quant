@@ -1,6 +1,6 @@
 import Footer from "@/components/layout/Footer";
-import InsightsHero from "@/components/sections/insights/InsightsHero";
-import LatestNews from "@/components/sections/insights/LatestNews";
+import InsightsHero from "@/app/insights/components/InsightsHero";
+import LatestNews from "@/app/insights/components/LatestNews";
 
 
 export default function Insight(){

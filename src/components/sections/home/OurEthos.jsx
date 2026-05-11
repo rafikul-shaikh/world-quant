@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Button from "../ui/Button";
+import Button from "../common/Button";
 
 const cardData = [
   {

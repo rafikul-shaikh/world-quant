@@ -1,12 +1,22 @@
+
 "use client";
 import { useNav } from "@/context/NavContext";
 import Navbar from "./Navbar"; 
+import { useEffect, useState } from "react";
 
 export default function ClientWrapper({ children }) {
   const { isMenuOpen } = useNav();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // While loading, just show the children without the blur logic
+  if (!mounted) return <>{children}</>;
 
   return (
-    <body className="bg-black text-white">
+    <>
       <Navbar />
       <main 
         className={`transition-all duration-700 ease-in-out 
@@ -14,6 +24,6 @@ export default function ClientWrapper({ children }) {
       >
         {children}
       </main>
-    </body>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 import { div, section } from "framer-motion/client";
-import Button from "../ui/Button";
+import Button from "@/components/sections/common/Button";
 
 export default function Investors() {
   return (

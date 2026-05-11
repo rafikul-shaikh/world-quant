@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import ContactDrawer from "./ContactDrawer";
-import NavItem from "../sections/ui/NavItem";
+import NavItem from "../sections/common/NavItem";
 import { useNav } from "@/context/NavContext";
 
 export default function Navbar() {
@@ -141,60 +141,52 @@ export default function Navbar() {
       </header>
 
       {/* Fullscreen Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-[100] h-[50vh] bg-black/60 backdrop-blur-md flex flex-col p-8 transition-all duration-500">
-          {/* Close Button */}
-          <button
-            onClick={() => setIsMenuOpen(false)}
-            className="absolute top-10 right-10 text-white text-xs tracking-widest flex items-center gap-2"
-          >
-            CLOSE <div className="w-6 h-[1px] bg-white"></div>
-          </button>
+      {/* Notice: No {isMenuOpen && ...} wrapper anymore */}
+      <div
+        className={`fixed inset-0 z-[100] h-[50vh] bg-black/60 backdrop-blur-md flex flex-col p-8 transition-all duration-500 
+  ${isMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
+      >
+        {/* Close Button */}
+        <button
+          onClick={() => setIsMenuOpen(false)}
+          className="absolute top-10 right-10 text-white text-xs tracking-widest flex items-center gap-2"
+        >
+          CLOSE <div className="w-6 h-[1px] bg-white"></div>
+        </button>
 
-          {/* Grid Menu like the image */}
-          <div className="grid grid-cols-2 gap-y-20 gap-x-10 my-auto text-center relative">
-            {/* Center Decorative Plus */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/30 text-2xl font-light">
-              +
-            </div>
-
-            {navLinks.map((link) => (
-              <div
-                key={link.name}
-                className="flex flex-col items-center justify-center"
-              >
-                {link.name === "Contact" ? (
-                  <button
-                    onClick={() => {
-                      setContactOpen(true);
-                      setIsMenuOpen(false);
-                    }}
-                    className="text-[10px] tracking-[0.3em] text-white uppercase hover:text-gray-400 transition-colors"
-                  >
-                    {link.name}
-                  </button>
-                ) : (
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-[10px] tracking-[0.3em] text-white uppercase hover:text-gray-400 transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                )}
-              </div>
-            ))}
+        <div className="grid grid-cols-2 gap-y-20 gap-x-10 my-auto text-center relative">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/30 text-2xl font-light">
+            +
           </div>
 
-          {/* Footer of Menu */}
-          {/* <div className="mt-auto flex justify-between items-end opacity-50">
-            <div className="text-[8px] tracking-tighter">
-              © 2026 WORLDQUANT FOUNDRY
+          {navLinks.map((link) => (
+            <div
+              key={link.name}
+              className="flex flex-col items-center justify-center"
+            >
+              {link.name === "Contact" ? (
+                <button
+                  onClick={() => {
+                    setContactOpen(true);
+                    setIsMenuOpen(false);
+                  }}
+                  className="text-[10px] tracking-[0.3em] text-white uppercase hover:text-gray-400 transition-colors"
+                >
+                  {link.name}
+                </button>
+              ) : (
+                <Link
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-[10px] tracking-[0.3em] text-white uppercase hover:text-gray-400 transition-colors"
+                >
+                  {link.name}
+                </Link>
+              )}
             </div>
-            <div className="w-8 h-8 border-t border-l border-white/20"></div>
-          </div> */}
+          ))}
         </div>
-      )}
+      </div>
 
       <ContactDrawer open={contactOpen} setOpen={setContactOpen} />
     </>

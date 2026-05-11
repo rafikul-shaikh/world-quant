@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Button from "../ui/Button";
+import Button from "../common/Button";
 
 export default function Hero() {
   return (
