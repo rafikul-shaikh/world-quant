@@ -3,14 +3,17 @@ import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import ContactDrawer from "./ContactDrawer";
 import NavItem from "../sections/ui/NavItem";
+import { useNav } from "@/context/NavContext";
 
 export default function Navbar() {
+  const { isMenuOpen, setIsMenuOpen } = useNav();
   const [hovered, setHovered] = useState(null);
   const [show, setShow] = useState(true);
-  const lastScroll = useRef(0);
-  const isHeroVisible = useRef(true);
   const [shrink, setShrink] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+
+  const lastScroll = useRef(0);
+  const isHeroVisible = useRef(true);
 
   const navLinks = [
     { name: "WHY WQF", href: "/why-wqf" },
@@ -23,51 +26,36 @@ export default function Navbar() {
   useEffect(() => {
     const hero = document.getElementById("hero");
 
-    //  HERO VISIBILITY TRACK
     const observer = new IntersectionObserver(
       ([entry]) => {
         isHeroVisible.current = entry.isIntersecting;
-
-        if (entry.isIntersecting) {
-          // HERO visible → show navbar
-          setShow(true);
-        } else {
-          // HERO gone → hide navbar immediately
-          setShow(false);
-        }
+        if (entry.isIntersecting) setShow(true);
+        else setShow(false);
       },
       { threshold: 0 },
     );
     if (hero) observer.observe(hero);
 
-    //  SCROLL DIRECTION TRACK
     const handleScroll = () => {
       const currentScroll = window.scrollY;
-      if (currentScroll > 50) {
-        setShrink(true);
-      } else {
-        setShrink(false);
-      }
+      setShrink(currentScroll > 50);
 
-      //  Only control scroll behavior AFTER hero is gone
       if (!isHeroVisible.current) {
-        if (currentScroll < lastScroll.current) {
-          setShow(true); // scroll up → show
-        } else {
-          setShow(false); // scroll down → hide
-        }
+        setShow(currentScroll < lastScroll.current);
       }
-
       lastScroll.current = currentScroll;
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       if (hero) observer.unobserve(hero);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -77,20 +65,14 @@ export default function Navbar() {
            ${
              shrink
                ? "w-[90%] md:w-[40%] left-1/2 -translate-x-1/2 rounded-[8px] bg-black/80 backdrop-blur-md shadow-2xl py-2"
-               : "w-full left-0 translate-x-0  py-2"
-           }
-             `}
+               : "w-full left-0 translate-x-0 py-2"
+           }`}
       >
-        <div className=" px-2 lg:px-4">
+        <div className="px-2 lg:px-4">
           <div className="flex items-center justify-between h-8">
             {/* Logo */}
-
-            <Link
-              href="/"
-              className="text-white/80 transition-all duration-300 flex items-center"
-            >
+            <Link href="/" className="text-white/80 flex items-center">
               {shrink ? (
-                // SVG LOGO (when navbar is centered/shrunk)
                 <svg
                   className="w-[28px] h-[28px]"
                   viewBox="0 0 65 65"
@@ -110,52 +92,110 @@ export default function Navbar() {
                   />
                 </svg>
               ) : (
-                // TEXT LOGO (default state)
-                <div className="leading-tight">
-                  WORLDQUANT <br />
-                  <span className="font-normal">FOUNDRY</span>
+                <div className="leading-tight text-[10px] tracking-widest font-bold">
+                  WORLDQUANT <br />{" "}
+                  <span className="font-normal text-gray-400">FOUNDRY</span>
                 </div>
               )}
             </Link>
 
-            <nav className="">
+            {/* Desktop Navigation (Hidden below 1018px) */}
+            <nav className="hidden min-[1018px]:block">
               <ul className="flex flex-row gap-1">
-                {navLinks.map((link, index) => {
-                  const commonProps = {
-                    label: link.name,
-                    isActive: hovered === index,
-                    onMouseEnter: () => {
-                      setHovered(index);
-                      setTimeout(() => setHovered(null), 400);
-                    },
-                  };
-
-                  if (link.name === "Contact") {
-                    return (
-                      <li key={link.name}>
-                        <button onClick={() => setContactOpen(true)}>
-                          <NavItem {...commonProps} />
-                        </button>
-                      </li>
-                    );
-                  }
-
-                  return (
-                    <li key={link.name}>
+                {navLinks.map((link, index) => (
+                  <li key={link.name}>
+                    {link.name === "Contact" ? (
+                      <button onClick={() => setContactOpen(true)}>
+                        <NavItem
+                          label={link.name}
+                          isActive={hovered === index}
+                          onMouseEnter={() => setHovered(index)}
+                        />
+                      </button>
+                    ) : (
                       <Link href={link.href}>
-                        <NavItem {...commonProps} />
+                        <NavItem
+                          label={link.name}
+                          isActive={hovered === index}
+                          onMouseEnter={() => setHovered(index)}
+                        />
                       </Link>
-                    </li>
-                  );
-                })}
+                    )}
+                  </li>
+                ))}
               </ul>
             </nav>
 
-            {/* Mobile Menu Button */}
-            <button className="lg:hidden text-white text-2xl">Contact</button>
+            {/* Mobile Indicator (Shown below 1018px) */}
+            <button
+              onClick={() => setIsMenuOpen(true)}
+              className="min-[1018px]:hidden flex items-center justify-center w-8 h-8 border border-white/20 rounded-sm relative"
+            >
+              <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+              {/* Decorative Brackets */}
+              <span className="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-white/40"></span>
+              <span className="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-white/40"></span>
+            </button>
           </div>
         </div>
       </header>
+
+      {/* Fullscreen Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-[100] h-[50vh] bg-black/60 backdrop-blur-md flex flex-col p-8 transition-all duration-500">
+          {/* Close Button */}
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            className="absolute top-10 right-10 text-white text-xs tracking-widest flex items-center gap-2"
+          >
+            CLOSE <div className="w-6 h-[1px] bg-white"></div>
+          </button>
+
+          {/* Grid Menu like the image */}
+          <div className="grid grid-cols-2 gap-y-20 gap-x-10 my-auto text-center relative">
+            {/* Center Decorative Plus */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/30 text-2xl font-light">
+              +
+            </div>
+
+            {navLinks.map((link) => (
+              <div
+                key={link.name}
+                className="flex flex-col items-center justify-center"
+              >
+                {link.name === "Contact" ? (
+                  <button
+                    onClick={() => {
+                      setContactOpen(true);
+                      setIsMenuOpen(false);
+                    }}
+                    className="text-[10px] tracking-[0.3em] text-white uppercase hover:text-gray-400 transition-colors"
+                  >
+                    {link.name}
+                  </button>
+                ) : (
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-[10px] tracking-[0.3em] text-white uppercase hover:text-gray-400 transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Footer of Menu */}
+          {/* <div className="mt-auto flex justify-between items-end opacity-50">
+            <div className="text-[8px] tracking-tighter">
+              © 2026 WORLDQUANT FOUNDRY
+            </div>
+            <div className="w-8 h-8 border-t border-l border-white/20"></div>
+          </div> */}
+        </div>
+      )}
+
       <ContactDrawer open={contactOpen} setOpen={setContactOpen} />
     </>
   );
