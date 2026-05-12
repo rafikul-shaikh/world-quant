@@ -2,45 +2,61 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Card from "../common/Card";
 
 export default function OurFounders() {
-  const sectionRef = useRef(null);
+  // const sectionRef = useRef(null);
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  // useEffect(() => {
+  //   gsap.registerPlugin(ScrollTrigger);
 
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top top",
-      end: "+=200%",
-      pin: true,
-      scrub: true,
-    });
-  }, []);
+  //   ScrollTrigger.create({
+  //     trigger: sectionRef.current,
+  //     start: "top top",
+  //     end: "+=200%",
+  //     pin: true,
+  //     scrub: true,
+  //   });
+  // }, []);
+
+  const founderData = [
+    {
+      bg: "bg-teal-400",
+      title: "Move at the speed of breakthrough.",
+      img: "/image/home/founder/home-4.svg",
+      number: "01",
+      text: "Start building today with expert support, capital on demand, and market focus.",
+    },
+    {
+      bg: "bg-red-400",
+      title: "Full-stack infrastructure, ready from day one.",
+      img: "/image/home/founder/home-5.svg",
+      number: "02",
+      text: "Launch-ready operations, lean teams, and founder salaries paid from the start.",
+    },
+    {
+      bg: "bg-gray-100",
+      title: "Connections that move you forward.",
+      img: "/image/home/founder/home-6.svg",
+      number: "03",
+      text: "Expert mentorship, committed customers, and a cohort that matches your pace.",
+    },
+  ];
 
   return (
     <section
-      ref={sectionRef}
+      // ref={sectionRef}
       className="w-full min-h-screen overflow-hidden bg-black py-[120px] md:py-[200px]"
     >
       <div className="max-w-9xl mx-auto px-8 flex justify-between">
         {/* Left Side - SCROLLABLE CARDS */}
-        <div className="w-[520px]">
-          <div className="h-full  pr-2 space-y-4">
-            {/* CARD 1 */}
-            <div className="h-[500px] w-[670px] bg-white/30 rounded-3xl p-4 text-white flex items-center justify-center">
-              Card 1
-            </div>
-
-            {/* CARD 2 */}
-            <div className="h-[500px] w-[670px] bg-white/20 rounded-3xl p-4 text-white flex items-center justify-center">
-              Card 2
-            </div>
-
-            {/* CARD 3 */}
-            <div className="h-[500px] w-[670px] bg-white/30 rounded-3xl p-4 text-white flex items-center justify-center">
-              Card 3
-            </div>
+        <div className="w-[640px]">
+          {/* <Card/> */}
+          <div className="h-full pr-2 space-y-4">
+            {founderData.map((card) => (
+              <Card key={card.number} {...card} />
+              // <Card/>
+            ))}
           </div>
         </div>
 

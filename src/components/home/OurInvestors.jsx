@@ -2,25 +2,50 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Card from "../common/Card";
 
 export default function OurInvestors() {
-  const sectionRef = useRef(null);
+  // const sectionRef = useRef(null);
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  // useEffect(() => {
+  //   gsap.registerPlugin(ScrollTrigger);
 
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top top",
-      end: "+=200%",
-      pin: true,
-      scrub: true,
-    });
-  }, []);
+  //   ScrollTrigger.create({
+  //     trigger: sectionRef.current,
+  //     start: "top top",
+  //     end: "+=200%",
+  //     pin: true,
+  //     scrub: true,
+  //   });
+  // }, []);
+
+  const investorData = [
+    {
+      bg: "bg-teal-400",
+      title: "Foresight that converts",
+      img: "/image/home/investor/home-1.svg",
+      number: "01",
+      text: "Access to breakthrough companies before markets see them–backed by networks that execute.",
+    },
+    {
+      bg: "bg-red-400",
+      title: "Vetted and supported",
+      img: "/image/home/investor/home-2.svg",
+      number: "02",
+      text: "Four to seven ventures annually, each comprehensively evaluated and backed with full infrastructure to scale.",
+    },
+    {
+      bg: "bg-gray-100",
+      title: "Transparent and Accelerated.",
+      img: "/image/home/investor/home-3.svg",
+      number: "03",
+      text: "Direct operator access, shared diligence, and portfolio companies build to compress time to value.",
+    },
+  ];
 
   return (
     <section
-      ref={sectionRef}
+      // ref={sectionRef}
       className="w-full min-h-screen overflow-hidden bg-black py-[120px] md:py-[200px]"
     >
       <div className="max-w-9xl mx-auto flex justify-between">
@@ -78,19 +103,11 @@ export default function OurInvestors() {
         {/* RIGHT SIDE - SCROLLABLE CARDS */}
         <div>
           <div className="h-full  pr-2 space-y-4">
-            {/* CARD 1 */}
-            <div className="h-[500px] w-[670px] bg-white/30 rounded-3xl p-4 text-white flex items-center justify-center">
-              Card 1
-            </div>
-
-            {/* CARD 2 */}
-            <div className="h-[500px] w-[670px] bg-white/30 rounded-3xl p-4 text-white flex items-center justify-center">
-              Card 2
-            </div>
-
-            {/* CARD 3 */}
-            <div className="h-[500px] w-[670px] bg-white/30 rounded-3xl p-4 text-white flex items-center justify-center">
-              Card 3
+            <div className="h-full pr-2 space-y-4">
+              {investorData.map((card) => (
+                <Card key={card.number} {...card} />
+                // <Card/>
+              ))}
             </div>
           </div>
         </div>
