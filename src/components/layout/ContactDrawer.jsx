@@ -33,7 +33,7 @@ export default function ContactDrawer({ open, setOpen }) {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 left-0 z-[100] h-screen overflow-y-auto hide-scrollbar w-full max-w-[700px] bg-[#dadada] text-black 
+        className={`fixed top-0 left-0 z-[300] h-screen overflow-y-auto hide-scrollbar w-full max-w-[700px] bg-[#dadada] text-black 
            px-12 py-10  rounded-r-[20px] shadow-2xl  transition-transform duration-500 ease-in-out ${open ? "translate-x-0" : "-translate-x-full"}`}
       >
         <button

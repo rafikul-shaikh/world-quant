@@ -57,6 +57,20 @@ export default function Navbar() {
     document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1018) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [setIsMenuOpen]);
+
   return (
     <>
       <header
@@ -128,17 +142,35 @@ export default function Navbar() {
 
             {/* Mobile Indicator (Shown below 1018px) */}
             <button
-              // onClick={() => setIsMenuOpen(true)}
               onClick={() => setIsMenuOpen((prev) => !prev)}
               className="min-[1018px]:hidden flex items-center justify-center w-8 h-8   rounded-sm relative"
             >
               <div className="w-2 h-2 bg-white rounded-[2px]"></div>
-              {/* Corner Ascents */}
 
-              <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white" />
-              <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white" />
-              <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white" />
-              <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white" />
+              {/* Corner Ascents */}
+              {/* Top Left */}
+              <div
+                className={`absolute top-0 left-0 w-2 h-2 border-white/60
+                ${isMenuOpen ? "border-b border-r" : "border-t border-l"}`}
+              />
+
+              {/* Top Right */}
+              <div
+                className={`absolute top-0 right-0 w-2 h-2 border-white/60
+                ${isMenuOpen ? "border-b border-l" : "border-t border-r"}`}
+              />
+
+              {/* Bottom Left */}
+              <div
+                className={`absolute bottom-0 left-0 w-2 h-2 border-white/60
+                ${isMenuOpen ? "border-t border-r" : "border-b border-l"}`}
+              />
+
+              {/* Bottom Right */}
+              <div
+                className={`absolute bottom-0 right-0 w-2 h-2 border-white/60
+                ${isMenuOpen ? "border-t border-l" : "border-b border-r"}`}
+              />
             </button>
           </div>
         </div>
@@ -146,15 +178,16 @@ export default function Navbar() {
 
       {/* Fullscreen Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-[100] mt-10 h-[40vh] bg-black/60 backdrop-blur-md flex flex-col p-8 transition-all duration-500 
-        ${isMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
+        className={`fixed inset-0 z-[100] mt-10 border-b border-white/20 h-[40vh] bg-black backdrop-blur-md 
+          flex flex-col p-8 
+        ${isMenuOpen ? "flex" : "hidden"}`}
       >
-        <div className="grid grid-cols-2 gap-y-20 gap-x-10 my-auto text-center relative">
+        <div className="grid grid-cols-2   my-auto text-center relative  ">
           {navLinks.map((link) => (
             <div
               key={link.name}
               // className=" flex flex-col items-center justify-center"
-              className="relative  font-azeret text-[20px] flex items-center justify-center px-6 py-4 group"
+              className="relative  font-azeret text-[20px] flex items-center justify-center px-6 py-4 group  "
             >
               {/* Corners */}
               <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/90" />
