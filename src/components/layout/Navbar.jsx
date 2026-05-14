@@ -54,7 +54,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
   }, [isMenuOpen]);
 
   useEffect(() => {
@@ -178,7 +178,7 @@ export default function Navbar() {
 
       {/* Fullscreen Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-[100] mt-10 border-b border-white/20 h-[40vh] bg-black backdrop-blur-md 
+        className={`fixed inset-0 z-[100] mt-10 border-b border-white/20 h-[40vh]  bg-black backdrop-blur-md 
           flex flex-col p-8 
         ${isMenuOpen ? "flex" : "hidden"}`}
       >

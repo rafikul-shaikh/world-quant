@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen w-full bg-[#050505] text-white overflow-visible"
+      className="relative min-h-screen w-full bg-[#050505] text-white overflow-hidden"
     >
       {/* BACKGROUND */}
       {/* <div className="absolute inset-0 z-0 opacity-40">
@@ -16,12 +16,13 @@ export default function Hero() {
       </div> */}
 
       {/* CENTER CONTENT */}
-      <div className="relative z-10 flex items-center justify-between h-[640px] px-8 lg:px-10  mx-auto">
-        <motion.h1 className="text-6xl font-normal uppercase">
+      {/* <div className="relative z-10 flex items-center justify-between h-[640px] px-8 lg:px-10  mx-auto"> */}
+      <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between px-10 mx-auto py-16 lg:h-[640px]">
+        <motion.h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl  font-normal uppercase">
           Forging Companies <br /> That
         </motion.h1>
 
-        <motion.h1 className=" mt-30 text-6xl font-normal uppercase text-right">
+        <motion.h1 className=" mt-30 text-3xl sm:text-4xl md:text-6xl lg:text-7xl  font-normal uppercase text-right">
           Pull The <br /> Future Forward
         </motion.h1>
       </div>
@@ -30,7 +31,7 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 w-full px-8 lg:px-10 pt-10 pb-8 z-10">
         <div className="w-full border-t border-white/40"></div>
 
-        <div className="mt-4 flex justify-between items-center">
+        <div className="mt-4 flex flex-col lg:flex-row gap-6 lg:gap-0 justify-between items-start lg:items-center">
           {/* CONTACT */}
 
           <Button
@@ -42,7 +43,7 @@ export default function Hero() {
             Contact Us
           </Button>
 
-          <div className="flex items-center justify-between gap-40">
+          <div className="flex items-center justify-between gap-6 sm:gap-10 lg:gap-40">
             {/* TEXT */}
             <p className="max-w-[480px] text-[11px] text-white/60 font-azeret uppercase text-left leading-3.5 tracking-normal">
               WorldQuant Foundry is a venture lab that empowers breakthrough
