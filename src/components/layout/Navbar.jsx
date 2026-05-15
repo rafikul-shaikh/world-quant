@@ -3,13 +3,14 @@ import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import ContactDrawer from "./ContactDrawer";
 import NavItem from "../common/NavItem";
+import { useNav } from "@/context/NavContext";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
+  const { isMenuOpen, setIsMenuOpen } = useNav();
   const [hovered, setHovered] = useState(null);
   const [show, setShow] = useState(true);
   const [shrink, setShrink] = useState(false);
-  const [contactOpen, setContactOpen] = useState(false);
 
   const lastScroll = useRef(0);
   const isHeroVisible = useRef(true);
