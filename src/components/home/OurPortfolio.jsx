@@ -1,17 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
-
-export default function Portfolio() {
-  const contentRef = useRef(null);
-
+export default function OurPortfolio() {
   const data = [
     {
       title: "Alpha Deal",
@@ -46,22 +39,9 @@ export default function Portfolio() {
     },
   ];
 
-  useEffect(() => {
-    gsap.from(contentRef.current, {
-      opacity: 0,
-      y: 80,
-      duration: 1.2,
-      ease: "power4.inOut",
-      scrollTrigger: {
-        trigger: contentRef.current,
-        start: "top 60%",
-      },
-    });
-  }, []);
-
   return (
     <section className="overflow-hidden bg-[#dadada]  pt-[170px] pb-[120px] md:pb-[200px]">
-      <div className=" text-black container mx-auto" ref={contentRef}>
+      <div className=" text-black container mx-auto">
         {/* HEADER */}
 
         <div className="mx-auto mb-[80px] flex max-w-[668px] flex-col items-center gap-[15px] text-center md:mb-[100px]">

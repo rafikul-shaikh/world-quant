@@ -3,10 +3,9 @@ import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import ContactDrawer from "./ContactDrawer";
 import NavItem from "../common/NavItem";
-import { useNav } from "@/context/NavContext";
 
 export default function Navbar() {
-  const { isMenuOpen, setIsMenuOpen } = useNav();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hovered, setHovered] = useState(null);
   const [show, setShow] = useState(true);
   const [shrink, setShrink] = useState(false);

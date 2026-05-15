@@ -16,8 +16,7 @@ export default function Hero() {
       </div> */}
 
       {/* CENTER CONTENT */}
-      {/* <div className="relative z-10 flex items-center justify-between h-[640px] px-8 lg:px-10  mx-auto"> */}
-      <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between px-10 mx-auto py-16 lg:h-[640px]">
+      <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between  px-10 mx-auto py-16 lg:h-[640px]">
         <motion.h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl  font-normal uppercase">
           Forging Companies <br /> That
         </motion.h1>

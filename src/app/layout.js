@@ -1,18 +1,14 @@
 
-import { NavProvider } from "@/context/NavContext";
-import ClientWrapper from "../components/layout/ClientWrapper";
+import Navbar from "@/components/layout/Navbar";
 import "./globals.css";
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      {/* Body MUST be a direct child of html or wrapped only by specific Next.js providers */}
+    <html lang="en" >
+
       <body className="bg-black text-white">
-        <NavProvider>
-          <ClientWrapper>
+        <Navbar/>
             {children}
-          </ClientWrapper>
-        </NavProvider>
       </body>
     </html>
   );
